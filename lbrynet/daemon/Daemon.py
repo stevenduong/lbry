@@ -2247,10 +2247,10 @@ class Daemon(AuthJSONRPCServer):
             (bool) true if payment successfully scheduled
         """
 
-        reserved_points = self.session.wallet.reserve_points(address, amount)
-        if reserved_points is None:
-            raise InsufficientFundsError()
-        yield self.session.wallet.send_points_to_address(reserved_points, amount)
+        #reserved_points = self.session.wallet.reserve_points(address, amount)
+        #if reserved_points is None:
+        #    raise InsufficientFundsError()
+        yield self.session.wallet.send_amount_to_address(amount, address)
         self.analytics_manager.send_credits_sent()
         defer.returnValue(True)
 
