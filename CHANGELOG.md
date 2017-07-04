@@ -18,6 +18,7 @@ at anytime.
 
 ### Fixed
   * Fixed timeout behaviour when calling API command get
+  * Fixed incorrect formatting of "amount" fields
   *
 
 ### Deprecated

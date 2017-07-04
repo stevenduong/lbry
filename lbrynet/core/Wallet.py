@@ -325,8 +325,8 @@ class SqliteStorage(MetaDataStorage):
                                    "                        channel_name, signature_is_valid, "
                                    "                        last_modified)"
                                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                                   (claim_sequence, claim_id, claim_address, height, amount,
-                                   supports, serialized, channel_name, signature_is_valid, now))
+                                   (claim_sequence, claim_id, claim_address, height, float(amount),
+                                    supports, serialized, channel_name, signature_is_valid, now))
         defer.returnValue(None)
 
     @rerun_if_locked
@@ -339,7 +339,7 @@ class SqliteStorage(MetaDataStorage):
 
         if certificate_id:
             certificate_result = yield self.db.runQuery("SELECT row_id FROM claim_cache "
-                                        "WHERE claim_id=?", (certificate_id, ))
+                                                        "WHERE claim_id=?", (certificate_id, ))
         if certificate_id is not None and certificate_result is None:
             log.warning("Certificate is not in cache")
         elif certificate_result:
