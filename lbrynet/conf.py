@@ -80,6 +80,8 @@ def _get_old_directories(platform):
         dirs['data'] = os.path.expanduser('~/.lbrynet')
         dirs['lbryum'] = os.path.expanduser('~/.lbryum')
         dirs['download'] = os.path.expanduser('~/Downloads')
+    else:
+        raise ValueError('unknown platform value')
     return dirs
 
 
@@ -104,6 +106,8 @@ def _get_new_directories(platform):
 
         if not dirs['download']:
             dirs['download'] = os.path.expanduser('~/Downloads')
+    else:
+        raise ValueError('unknown platform value')
     return dirs
 
 
