@@ -116,8 +116,8 @@ if 'darwin' in sys.platform:
     dirs = _get_old_directories(DARWIN)
 elif 'win' in sys.platform:
     platform = WINDOWS
-    if os.path.isdir(user_data_dir('lbryum', roaming=True)) and \
-       os.path.isdir(user_data_dir('lbrynet', roaming=True)):
+    if os.path.isdir(_get_old_directories(WINDOWS)['data']) or \
+       os.path.isdir(_get_old_directories(WINDOWS)['lbryum']):
         dirs = _get_old_directories(WINDOWS)
     else:
         dirs = _get_new_directories(WINDOWS)
@@ -126,8 +126,8 @@ elif 'win' in sys.platform:
     dirs['download'] = _win_path_to_bytes(dirs['download'])
 else:
     platform = LINUX
-    if os.path.isdir(os.path.expanduser('~/.lbrynet')) and \
-       os.path.isdir(os.path.expanduser('~/.lbryum')):
+    if os.path.isdir(_get_old_directories(LINUX)['data']) or \
+       os.path.isdir(_get_old_directories(LINUX)['lbryum']):
         dirs = _get_old_directories(LINUX)
     else:
         dirs = _get_new_directories(LINUX)
